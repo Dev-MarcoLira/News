@@ -5,7 +5,38 @@
     <div class="center">
 
         <div style="width: 100%;">
-            <h2 style="text-align: center;">BUSCA: 33 resultados</h2>
+            <h2 style="text-align: center;"><%= posts.length %> resultado(s)</h2>
+
+            <div style="width: fit-content; margin: 15px;" class="best-read">
+
+                <div class="container">
+
+                    <% for(let i = 0; i < posts.length; i++){ %>
+
+                        <div class="best-read-box">
+
+                            <img src="<%= posts[i].image %>" alt="best-read">
+    
+                            <div class="best-read-description">
+    
+                                <h4><%= posts[i].title %></h4>
+    
+                                <p><%- posts[i].body %></p>
+    
+                                <a href="<%= posts[i].slug %>">Saiba mais</a>
+    
+    
+                            </div>    
+    
+                        </div>    
+
+                    
+                    <% } %>
+
+                </div>
+
+            </div>
+            
         </div>
 
         <div class="best-read">
@@ -14,70 +45,27 @@
 
             <div class="container">
 
-                <div class="best-read-box">
+                <% for(let i = 0; i < bestReadPosts.length; i++){ %>
 
-                    <img src="/public/images/rio-3.jpeg" alt="best-read">
+                    <div class="best-read-box">
 
-                    <div class="best-read-description">
+                        <img src="<%= bestReadPosts[i].image %>" alt="best-read">
 
-                        <h4>Natureza</h4>
+                        <div class="best-read-description">
 
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit assumenda ipsa corrupti repellat enim, labore non, blanditiis illo est doloremque inventore. Officiis aspernatur fugit quod quos magnam harum reprehenderit perspiciatis?</p>
+                            <h4><%= bestReadPosts[i].title %></h4>
 
-                        <a href="/natureza-geral">Saiba mais</a>
+                            <p><%- bestReadPosts[i].body %></p>
+
+                            <a href="<%= bestReadPosts[i].slug %>">Saiba mais</a>
 
 
-                    </div>    
+                        </div>    
 
-                </div>
+                    </div>
 
-                <div class="best-read-box">
-
-                    <img src="/public/images/rio-3.jpeg" alt="best-read">
-
-                    <div class="best-read-description">
-
-                        <h4>Natureza</h4>
-
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit assumenda ipsa corrupti repellat enim, labore non, blanditiis illo est doloremque inventore. Officiis aspernatur fugit quod quos magnam harum reprehenderit perspiciatis?</p>
-
-                        <a href="/natureza-geral">Saiba mais</a>
-
-                    </div>    
-
-                </div>
-
-                <div class="best-read-box">
-
-                    <img src="/public/images/rio-3.jpeg" alt="best-read">
-
-                    <div class="best-read-description">
-
-                        <h4>Natureza</h4>
-
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit assumenda ipsa corrupti repellat enim, labore non, blanditiis illo est doloremque inventore. Officiis aspernatur fugit quod quos magnam harum reprehenderit perspiciatis?</p>
-
-                        <a href="/natureza-geral">Saiba mais</a>
-
-                    </div>    
-
-                </div>
-
-                <div class="best-read-box">
-
-                    <img src="/public/images/rio-3.jpeg" alt="best-read">
-
-                    <div class="best-read-description">
-
-                        <h4>Natureza</h4>
-
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit assumenda ipsa corrupti repellat enim, labore non, blanditiis illo est doloremque inventore. Officiis aspernatur fugit quod quos magnam harum reprehenderit perspiciatis?</p>
-
-                        <a href="/natureza-geral">Saiba mais</a>
-
-                    </div>    
-
-                </div>
+                <% } %>
+                
             </div>
         </div>
 

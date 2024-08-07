@@ -6,17 +6,23 @@
 
                 <div class="news-single-box">
 
-                    <h2>10 Principais habilidades para se tornar um Desenvolvedor Full-Stack em 2024</h2>
+                    <h2><%= post.title %></h2>
 
                     <div class="author">
 
-                        <span>Por Guilherme Grillo</span>
+                        <span>Por <%= post.author %></span>
+
+                    </div>
+
+                    <div class="article-img">
+
+                        <img style="max-width: 100%; object-fit: cover;" src="<%- post.image %>" alt="article main image">
 
                     </div>
 
                     <p>
 
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, non et blanditiis, itaque beatae aliquam velit tempora dignissimos vero quaerat in quam voluptate nihil totam ullam ipsa laboriosam odit porro!
+                        <%- post.body %>
 
                     </p>
 
@@ -28,70 +34,26 @@
 
                     <div class="container">
 
-                        <div class="best-read-box">
+                        <% for(let i = 0; i < bestReadPosts.length; i++){ %>
 
-                            <img src="/public/images/rio-3.jpeg" alt="best-read">
-
-                            <div class="best-read-description">
-
-                                <h4>Natureza</h4>
-
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit assumenda ipsa corrupti repellat enim, labore non, blanditiis illo est doloremque inventore. Officiis aspernatur fugit quod quos magnam harum reprehenderit perspiciatis?</p>
-
-                                <a href="/natureza-geral">Saiba mais</a>
-
-
-                            </div>    
-
-                        </div>
-
-                        <div class="best-read-box">
-
-                            <img src="/public/images/rio-3.jpeg" alt="best-read">
-
-                            <div class="best-read-description">
-
-                                <h4>Natureza</h4>
-
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit assumenda ipsa corrupti repellat enim, labore non, blanditiis illo est doloremque inventore. Officiis aspernatur fugit quod quos magnam harum reprehenderit perspiciatis?</p>
-
-                                <a href="/natureza-geral">Saiba mais</a>
-
-                            </div>    
-
-                        </div>
-
-                        <div class="best-read-box">
-
-                            <img src="/public/images/rio-3.jpeg" alt="best-read">
-
-                            <div class="best-read-description">
-
-                                <h4>Natureza</h4>
-
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit assumenda ipsa corrupti repellat enim, labore non, blanditiis illo est doloremque inventore. Officiis aspernatur fugit quod quos magnam harum reprehenderit perspiciatis?</p>
-
-                                <a href="/natureza-geral">Saiba mais</a>
-
-                            </div>    
-
-                        </div>
-
-                        <div class="best-read-box">
-
-                            <img src="/public/images/rio-3.jpeg" alt="best-read">
-
-                            <div class="best-read-description">
-
-                                <h4>Natureza</h4>
-
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit assumenda ipsa corrupti repellat enim, labore non, blanditiis illo est doloremque inventore. Officiis aspernatur fugit quod quos magnam harum reprehenderit perspiciatis?</p>
-
-                                <a href="/natureza-geral">Saiba mais</a>
-
-                            </div>    
-
-                        </div>
+                            <div class="best-read-box">
+    
+                                <img src="<%= bestReadPosts[i].image %>" alt="best-read">
+    
+                                <div class="best-read-description">
+    
+                                    <h4><%= bestReadPosts[i].title %></h4>
+    
+                                    <p><%- bestReadPosts[i].body %></p>
+    
+                                    <a href="<%= bestReadPosts[i].slug %>">Saiba mais</a>
+    
+    
+                                </div>    
+    
+                            </div>
+    
+                        <% } %>                    
                     </div>
                 </div>
 
