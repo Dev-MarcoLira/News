@@ -1,0 +1,35 @@
+<%- include('partials/admin-header.html') %>
+
+    <main class="panel">
+        <div>
+            <form method="post" action="/admin/news">
+                <input type="text" name="title" placeholder="News Title" required>
+
+                <input type="text" name="url_image" placeholder="Image URL Link" >
+
+                <input type="text" name="category" placeholder="News Category" required>
+
+                <input type="text" name="author" placeholder="News Author" required>
+
+                <input type="text" name="slug" placeholder="News URL Slug" required>
+
+                <textarea name="body" placeholder="News Body Content" required>
+                </textarea>
+
+                <input type="submit" name="submit" value="Enviar">
+            </form>
+        </div>
+    </main>
+
+    <aside>
+        <div>
+            <ul>
+                <li><a href="/admin/news">Listar Notícias</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <%- include('partials/footer.html') %>
+
+</body>
+</html>

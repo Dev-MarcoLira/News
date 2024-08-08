@@ -1,0 +1,27 @@
+    <%- include('partials/admin-header.html') %>
+    
+
+    <main class="news">
+
+        <div>
+
+            <% for(let i = 0; i < posts.length; i++){ %>
+
+            <div class="news-single">
+                <img src="<%= posts[i].image %>" alt="image">
+                <p><%= posts[i].title %></p>
+                <a href="/admin/news/delete/<%= posts[i].id %>">(X)</a>
+            </div>
+
+            <% } %>
+
+        </div>
+
+    </main>
+
+
+    <%- include('partials/footer.html') %>
+
+
+</body>
+</html>
