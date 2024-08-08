@@ -1,13 +1,16 @@
 require('dotenv').config()
+const fileUpload = require('express-fileupload')
+const fs = require('fs')
 const express = require('express')
 const app = express()
 const path = require("path")
 const bodyParser = require('body-parser')
-const PORT = 3000
 const mongoose = require('mongoose')
 
 const USER = process.env.USER
 const PASSWORD = process.env.PASSWORD
+const PORT = 3000
+const HOST = process.env.HOST
 
 const uri = `mongodb+srv://${USER}:${PASSWORD}@cluster1.kowtsmr.mongodb.net/dankicode?retryWrites=true&w=majority&appName=Cluster1`
 const Posts = require('./schemas/Posts')
@@ -34,12 +37,12 @@ app.set('view engine', 'html')
 app.use('/public', express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, '/pages'))
 
-const users = [
-    {
-        login: 'Marco',
-        password: '123456'
-    }
-] 
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: path.join(__dirname, 'temp')
+}))
+
+const users = JSON.parse(process.env.ADMIN_USERS)
 
 app.get('/admin/news', (req,res)=>{
 
@@ -68,19 +71,36 @@ app.get('/admin/news', (req,res)=>{
 
 app.post('/admin/news', (req,res)=>{
 
-    //console.log(req.body)
+    //Uploading files
 
-    Posts.create({
-        title: req.body.title,
-        image: req.body.url_image,
-        category: req.body.category,
-        body: req.body.body,
-        slug: req.body.slug,
-        author: req.body.author,
-        views: 0
+    const [ name, extension ] = req.files.image_file.name.split('.')
+    const allowedExtensions = [ 'jpg', 'jpeg', 'png' ]
+    
+    if(allowedExtensions.includes(extension) ){
+        
+        const date = new Date().getTime()
 
-    })
+        const image_url = `${name}-${date}.${extension}`
+        req.files.image_file.mv(__dirname+'/public/uploads/'+ image_url)
 
+        //Inserting Post in the Database
+
+        Posts.create({
+
+            title: req.body.title,
+            image: `${process.env.HOST}${image_url}`,
+            category: req.body.category,
+            body: req.body.body,
+            slug: req.body.slug,
+            author: req.body.author,
+            views: 0
+
+        })
+
+    }else{
+        fs.unlinkSync(req.files.image_file.tempFilePath)
+        console.log('Unsuported File Extension.')
+    }
 
     res.redirect('/admin/news')
     
